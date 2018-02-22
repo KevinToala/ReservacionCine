@@ -1,0 +1,66 @@
+<p-card title="Registro de Usuario" styleClass="ui-card-shadow">
+  <div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+
+      <form [formGroup]="usuarioForm">
+        <div class="ui-g">
+          <div class="ui-g-4">
+            <span class="ui-float-label">
+                <input type="text" pInputText formControlName="username">
+                <label>Usuario</label>
+            </span>
+          </div>
+
+          <div class="ui-g-4">
+            <span class="ui-float-label">
+              <input type="password" pPassword formControlName="clave">
+              <label>Clave</label>
+            </span>
+          </div>
+        </div>
+
+        <div class="ui-g">
+          <div class="ui-g-4">
+            <span class="ui-float-label">
+              <input type="text" pInputText formControlName="nombres">
+              <label>Nombres</label>
+            </span>
+          </div>
+
+          <div class="ui-g-4">
+            <span class="ui-float-label">
+              <input type="text" pInputText formControlName="apellidos">
+              <label>Apellidos</label>
+            </span>
+          </div>
+        </div>
+
+        <div class="ui-g">
+          <div class="ui-g-4">
+            <span class="ui-float-label">
+              <input type="text" pInputText formControlName="identificacion" pKeyFilter="pnum">
+              <label>Identificación</label>
+            </span>
+          </div>
+
+          <div class="ui-g-4">
+            <span class="ui-float-label">
+              <p-calendar dateFormat="dd/mm/yy" [showIcon]="true" formControlName="fechaNacimiento"
+                          [monthNavigator]="true" [yearNavigator]="true" yearRange="1900:2100">
+              </p-calendar>
+              <label>Fecha de Nacimiento</label>
+            </span>
+          </div>
+        </div>
+
+        <div class="ui-g">
+          <div class="ui-g-8">
+            <button [disabled]="usuarioForm.invalid" pButton type="button" label="Registrarse"
+                    class="ui-button-success" (click)="registrar()"></button>
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</p-card>
