@@ -8,8 +8,8 @@ export class HttpService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public get<T>(endPoint: string, httpParams?: HttpParams | {[param: string]: string | string[]}): Observable<T> {
-    return this.httpClient.get<T>(this.buildUrl(endPoint), {params: httpParams, headers: this.getRequestOptions()});
+  public get<T>(endPoint: string, incluirAutorizacion = true): Observable<T> {
+    return this.httpClient.get<T>(this.buildUrl(endPoint), {headers: this.getRequestOptions(incluirAutorizacion)});
   }
 
   public post<T>(endPoint: string, body: any, incluirAutorizacion = true): Observable<T> {

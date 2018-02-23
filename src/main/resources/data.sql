@@ -1,5 +1,5 @@
-insert into peliculas(titulo, descripcion, duracion, genero) VALUES
-  ('Pantera Negra', 'Pelicula de marvel', 5, 'ACCION');
+insert into peliculas(titulo, descripcion, duracion, genero, url_imagen) VALUES
+  ('Pantera Negra', 'T''Challa regresa a su hogar en la apartada nación africana de Wakanda para servir como líder de su país. Tras suceder a su padre en el trono, pasa a convertirse en Pantera Negra, una sigilosa criatura de la noche, con agudos sentidos felinos y otras habilidades como súper fuerza e inteligencia, agilidad, estrategia o maestro del combate sin armas. Es bajo el liderazgo de T''Challa como Wakanda consigue convertirse en una de las naciones más ricas y tecnológicamente avanzadas del planeta.', 135, 'ACCION', 'https://www.supercines.com/MovieImages/20171122Mov005/xxhdpi.jpg');
 
 insert into usuarios(username, clave, nombres, apellidos, identificacion, fecha_nacimiento, rol) VALUES
-  ('admin', '$2a$10$cDuprPNjRVkugNrEY1SYZelGtH54Ie78a3aHuVlNGhtiXgLo4RC26', 'Administrador', 'Administrador', '9999999999999', '2000-01-01', 'ADMIN');
+  ('admin', '$2a$10$cDuprPNjRVkugNrEY1SYZelGtH54Ie78a3aHuVlNGhtiXgLo4RC26', 'Administrador', '', '9999999999999', '2000-01-01', 'ADMIN');

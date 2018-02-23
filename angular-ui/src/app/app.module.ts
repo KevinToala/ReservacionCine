@@ -10,16 +10,21 @@ import { LoginComponent } from './login/login.component';
 import {HttpService} from './services/http.service';
 import {UsuarioService} from './services/usuario.service';
 import {CardModule} from 'primeng/card';
-import {CalendarModule, InputTextModule} from 'primeng/primeng';
+import {CalendarModule, CarouselModule, InputTextModule, OverlayPanelModule} from 'primeng/primeng';
 import {PasswordModule} from 'primeng/password';
 import {ButtonModule} from 'primeng/button';
 import {ReactiveFormsModule} from '@angular/forms';
 import {GrowlModule} from 'primeng/growl';
 import {MessageService} from 'primeng/components/common/messageservice';
 import {KeyFilterModule} from 'primeng/keyfilter';
-import { FuncionesComponent } from './funciones/funciones.component';
+import { PeliculasComponent } from './peliculas/peliculas.component';
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import {MenubarModule} from 'primeng/menubar';
+import {PeliculaService} from './services/pelicula.service';
+import {DataGridModule} from 'primeng/datagrid';
+import {SessionService} from './services/session.service';
+import {DialogModule} from 'primeng/dialog';
+import {StepsModule} from 'primeng/steps';
 
 @NgModule({
   imports: [
@@ -35,19 +40,25 @@ import {MenubarModule} from 'primeng/menubar';
     ReactiveFormsModule,
     GrowlModule,
     KeyFilterModule,
-    MenubarModule
+    MenubarModule,
+    CarouselModule,
+    DialogModule,
+    OverlayPanelModule,
+    StepsModule
   ],
   declarations: [
     AppComponent,
     RegistroUsuarioComponent,
     LoginComponent,
-    FuncionesComponent,
+    PeliculasComponent,
     MenuBarComponent
   ],
   providers: [
     HttpService,
     UsuarioService,
-    MessageService
+    MessageService,
+    PeliculaService,
+    SessionService
   ],
   bootstrap: [AppComponent]
 })

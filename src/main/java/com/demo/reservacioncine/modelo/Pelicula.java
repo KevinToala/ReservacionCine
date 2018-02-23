@@ -13,12 +13,13 @@ import java.util.List;
 @NoArgsConstructor
 public class Pelicula extends ModeloBase {
 	private String titulo;
-	private String descripcion;
-	private long duracion; //En segundos
+	private @Lob String descripcion;
+	private long duracion; //En minutos
+	private String urlImagen;
 	
 	@Enumerated(EnumType.STRING)
 	private GeneroPelicula genero;
 	
-	@OneToMany(mappedBy = "pelicula")
+	@OneToMany(mappedBy = "pelicula", fetch = FetchType.EAGER)
 	private List<Funcion> funciones;
 }

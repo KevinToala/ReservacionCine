@@ -1,5 +1,9 @@
 <p-menubar [model]="items">
-  <div>
+  <div *ngIf="sessionService.estaLogueado()">
+    {{nombresUsuario}}
     <button pButton label="Logout" icon="fa-sign-out" (click)="logout()"></button>
+  </div>
+  <div *ngIf="!sessionService.estaLogueado()">
+    <button pButton label="Iniciar Sesion" icon="fa-sign-in" routerLink="/login"></button>
   </div>
 </p-menubar>

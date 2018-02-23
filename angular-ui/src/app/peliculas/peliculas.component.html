@@ -1,0 +1,75 @@
+<app-menu-bar></app-menu-bar>
+
+<p-carousel headerText="Peliculas" [value]="peliculas" autoplayInterval="10000">
+  <ng-template let-pelicula pTemplate="item">
+    <div class="ui-grid ui-grid-responsive ui-grid-row-center">
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-12"><img src="{{pelicula.urlImagen}}" width="100" (mouseenter)="mostrarInfoPelicula($event, pelicula, op)"></div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-6 titulo">Titulo</div>
+        <div class="ui-grid-col-6">{{pelicula.titulo}}</div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-6 titulo">Genero</div>
+        <div class="ui-grid-col-6">{{pelicula.genero}}</div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-6 titulo">Duración</div>
+        <div class="ui-grid-col-6">{{pelicula.duracion}} Minutos</div>
+      </div>
+      <div *ngIf="sessionService.estaLogueado()" class="ui-grid-row">
+        <div class="ui-grid-col-12">
+          <button type="button" label="Reservar" pButton icon="fa-archive" (click)="mostrarDialogoReserva(pelicula)"></button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-carousel>
+
+<p-overlayPanel #op [style]="{'width': '500px'}">
+  <div *ngIf="peliculaOverlayPanel != null">
+    <div class="ui-grid ui-grid-responsive">
+      <div class="ui-grid-row" style="text-align: center;">
+        <div class="ui-grid-col-12">
+        <img src="{{peliculaOverlayPanel.urlImagen}}" width="100"
+             (mouseenter)="mostrarInfoPelicula($event, pelicula, op)">
+        </div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-6 titulo">Titulo:</div>
+        <div class="ui-grid-col-6">{{peliculaOverlayPanel.titulo}}</div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-6 titulo">Genero:</div>
+        <div class="ui-grid-col-6">{{peliculaOverlayPanel.genero}}</div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-6 titulo">Duración:</div>
+        <div class="ui-grid-col-6">{{peliculaOverlayPanel.duracion}} Minutos</div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-6 titulo">Descripcion:</div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-12" style="text-align: justify;">{{peliculaOverlayPanel.descripcion}}</div>
+      </div>
+    </div>
+  </div>
+</p-overlayPanel>
+
+<p-dialog header="Reservación" [(visible)]="dialogReservaVisible" modal="modal" width="800" [responsive]="true">
+  <div class="ui-g ui-fluid" *ngIf="peliculaReservar != null">
+    <div class="ui-g-12">
+      <p-steps [model]="pasosReservacion" [(activeIndex)]="activeIndexStepReserva" styleClass="steps-custom"></p-steps>
+    </div>
+  </div>
+
+  <p-footer>
+    <button pButton *ngIf="activeIndexStepReserva >= 0 && activeIndexStepReserva < 2"
+            label="Siguiente" (click)="siguientePasoReserva()">
+    </button>
+    <button pButton *ngIf="activeIndexStepReserva == 2" class="ui-button-success"
+            label="Reservar" (click)="reservar()"></button>
+  </p-footer>
+</p-dialog>

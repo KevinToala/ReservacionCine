@@ -2,12 +2,13 @@ import {RouterModule, Routes} from '@angular/router';
 import {ModuleWithProviders} from '@angular/core';
 import {RegistroUsuarioComponent} from './registro-usuario/registro-usuario.component';
 import {LoginComponent} from './login/login.component';
-import {FuncionesComponent} from './funciones/funciones.component';
+import {PeliculasComponent} from './peliculas/peliculas.component';
 
 export const routes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: '', redirectTo: 'peliculas', pathMatch: 'full'},
+  { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroUsuarioComponent },
-  { path: 'funciones', component: FuncionesComponent }
+  { path: 'peliculas', component: PeliculasComponent }
 ];
 
 export const AppRoutes: ModuleWithProviders = RouterModule.forRoot(routes);

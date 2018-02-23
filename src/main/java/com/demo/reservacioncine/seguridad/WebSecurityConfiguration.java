@@ -26,7 +26,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().authorizeRequests()
-				.mvcMatchers("/", "/usuarios", "/login").permitAll()
+				.mvcMatchers("/", "/usuarios", "/login", "/peliculas").permitAll()
 				.anyRequest().authenticated()
 				.and()
 				.httpBasic()

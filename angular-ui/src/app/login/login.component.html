@@ -4,7 +4,7 @@
 
       <form [formGroup]="loginForm">
         <div class="ui-g">
-          <div class="ui-g-2">
+          <div class="ui-g-4">
               <span class="ui-float-label">
                   <input type="text" pInputText formControlName="username">
                   <label>Usuario</label>
@@ -13,7 +13,7 @@
         </div>
 
         <div class="ui-g">
-          <div class="ui-g-2">
+          <div class="ui-g-4">
               <span class="ui-float-label">
                   <input type="password" pInputText formControlName="clave">
                   <label>Clave</label>
@@ -22,13 +22,13 @@
         </div>
 
         <div class="ui-g">
-          <div class="ui-g-2">
+          <div class="ui-g-4">
             <button [disabled]="loginForm.invalid" class="ui-button-success" pButton type="button" label="Ingresar" (click)="login()"></button>
           </div>
         </div>
 
         <div class="ui-g">
-          <div class="ui-g-2">
+          <div class="ui-g-4">
             <button pButton type="button" label="Registrarse" routerLink="/registro"></button>
           </div>
         </div>

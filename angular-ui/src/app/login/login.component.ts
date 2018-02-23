@@ -25,9 +25,11 @@ export class LoginComponent implements OnInit {
   login(){
     let usuarioLogin = this.loginForm.value;
     this.usuarioService.login(usuarioLogin).subscribe(value => {
+      localStorage.setItem('cine-id', value.id);
+      localStorage.setItem('cine-nombres', value.nombres + ' ' + value.apellidos);
       localStorage.setItem('cine-autorizacion', `Basic ${btoa(usuarioLogin.username + ':' + usuarioLogin.clave)}`);
       localStorage.setItem('cine-rol', value.rol);
-      this.router.navigateByUrl('/funciones');
+      this.router.navigateByUrl('');
     });
   }
 }

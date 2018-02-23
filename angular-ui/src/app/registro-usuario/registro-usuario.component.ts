@@ -32,7 +32,7 @@ export class RegistroUsuarioComponent implements OnInit {
     this.usuarioService.registrar(this.usuarioForm.value)
       .subscribe(value => {
         this.messageService.add({severity:'success', summary:'Usuario', detail:'Usuario creado exitosamente'});
-        this.router.navigateByUrl('/')
+        this.router.navigateByUrl('/login')
       });
   }
 }
