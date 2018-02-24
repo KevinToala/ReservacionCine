@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
@@ -23,9 +24,8 @@ public class Reserva extends ModeloBase {
 	@JoinColumn(nullable = false)
 	private Usuario usuario;
 	
-	private LocalDate fecha;
+	private LocalDateTime fecha;
 	
-	@JsonIgnore
 	@Transient
 	private Set<Long> idButacasReservar;
 }

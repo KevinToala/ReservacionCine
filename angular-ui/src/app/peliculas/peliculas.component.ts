@@ -4,6 +4,7 @@ import {SessionService} from '../services/session.service';
 import {OverlayPanel} from 'primeng/primeng';
 import {MenuItem} from 'primeng/api';
 import {FuncionService} from '../services/funcion.service';
+import {MessageService} from 'primeng/components/common/messageservice';
 
 @Component({
   selector: 'app-peliculas',
@@ -27,7 +28,9 @@ export class PeliculasComponent implements OnInit {
 
   constructor(private peliculaService: PeliculaService,
               public sessionService: SessionService,
-              private funcionService: FuncionService) {
+              private funcionService: FuncionService,
+              private messageService:  MessageService
+  ) {
     this.activeIndexStepReserva = 0;
     this.peliculas = [{}];
     this.butacas = [];
@@ -68,14 +71,31 @@ export class PeliculasComponent implements OnInit {
   }
 
   reservar(){
-    this.dialogReservaVisible = false;
-    this.activeIndexStepReserva = 0;
+    const reserva = {
+      funcion: {
+        id: this.funcionSeleccionada.id
+      },
+      usuario: {
+        id: localStorage.getItem('cine-id')
+      },
+      idButacasReservar: this.butacasSeleccionadas
+    };
+
+    this.funcionService.reservar(reserva).subscribe(value => {
+      this.peliculaService.lista()
+        .subscribe(value => this.peliculas = value);
+
+      this.dialogReservaVisible = false;
+      this.activeIndexStepReserva = 0;
+      this.butacasSeleccionadas = [];
+      this.butacas = null;
+      this.funcionSeleccionada = null;
+      this.funciones = null;
+      this.messageService.add({severity:'success', summary:'Reservación', detail:'Se ha realizado su reserva exitosamente'});
+    });
   }
 
   seleccionarButaca(checked, butaca): void {
-    console.log(checked);
-    console.log(butaca)
-
     if (checked) {
       this.butacasSeleccionadas.push(butaca.id);
     }

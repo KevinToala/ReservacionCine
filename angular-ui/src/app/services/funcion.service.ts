@@ -14,4 +14,8 @@ export class FuncionService {
   public butacas(idFuncion): Observable<any> {
     return this.httpService.get(`funciones/${idFuncion}/butacas`)
   }
+
+  public reservar(reserva): Observable<any> {
+    return this.httpService.post('reservas', reserva);
+  }
 }

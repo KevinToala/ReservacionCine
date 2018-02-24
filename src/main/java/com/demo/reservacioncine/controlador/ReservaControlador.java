@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
+
 @RestController
 public class ReservaControlador {
 	@Autowired private ReservaRepositorio reservaRepositorio;
@@ -22,11 +24,12 @@ public class ReservaControlador {
 	
 	@PostMapping("reservas")
 	public Reserva crearReserva(@RequestBody Reserva reserva){
-		Usuario usuario = usuarioRepositorio.findOne(reserva.getId());
+		Usuario usuario = usuarioRepositorio.findOne(reserva.getUsuario().getId());
 		Funcion funcion = funcionRepositorio.findOne(reserva.getFuncion().getId());
 		
 		reserva.setUsuario(usuario);
 		reserva.setFuncion(funcion);
+		reserva.setFecha(LocalDateTime.now());
 		reservaRepositorio.save(reserva);
 		
 		reserva.getIdButacasReservar().forEach(idButaca -> {
