@@ -19,7 +19,6 @@ public class Funcion extends ModeloBase {
 	@JoinColumn(nullable = false)
 	private Sala sala;
 	
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private Pelicula pelicula;
@@ -27,9 +26,11 @@ public class Funcion extends ModeloBase {
 	private LocalDate fecha;
 	private LocalTime horario;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "funcion")
 	private List<Butaca> butacas;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "funcion")
 	private List<Reserva> reservas;
 }

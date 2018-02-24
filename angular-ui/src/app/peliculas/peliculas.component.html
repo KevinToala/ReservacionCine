@@ -1,6 +1,6 @@
 <app-menu-bar></app-menu-bar>
 
-<p-carousel headerText="Peliculas" [value]="peliculas" autoplayInterval="10000">
+<p-carousel headerText="Peliculas" [value]="peliculas" autoplayInterval="15000" [pageLinks]="5">
   <ng-template let-pelicula pTemplate="item">
     <div class="ui-grid ui-grid-responsive ui-grid-row-center">
       <div class="ui-grid-row">
@@ -27,12 +27,12 @@
   </ng-template>
 </p-carousel>
 
-<p-overlayPanel #op [style]="{'width': '500px'}">
+<p-overlayPanel #op [style]="{'width': '500px'}" (onAfterHide)="peliculaOverlayPanel == null">
   <div *ngIf="peliculaOverlayPanel != null">
     <div class="ui-grid ui-grid-responsive">
       <div class="ui-grid-row" style="text-align: center;">
         <div class="ui-grid-col-12">
-        <img src="{{peliculaOverlayPanel.urlImagen}}" width="100"
+        <img src="{{peliculaOverlayPanel.urlImagen}}" width="150"
              (mouseenter)="mostrarInfoPelicula($event, pelicula, op)">
         </div>
       </div>
@@ -63,10 +63,57 @@
     <div class="ui-g-12">
       <p-steps [model]="pasosReservacion" [(activeIndex)]="activeIndexStepReserva" styleClass="steps-custom"></p-steps>
     </div>
+
+    <div class="ui-g-12">
+      <div *ngIf="activeIndexStepReserva == 0">
+        <p-table [value]="funciones" [(selection)]="funcionSeleccionada" selectionMode="single" [responsive]="true">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Sala</th>
+              <th>Pelicula</th>
+              <th>Fecha</th>
+              <th>Horario</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-funcion>
+            <tr [pSelectableRow]="funcion">
+              <td>{{funcion.sala.nombre}}</td>
+              <td>{{funcion.pelicula.titulo}}</td>
+              <td>{{funcion.fecha}}</td>
+              <td>{{funcion.horario}}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+      <div *ngIf="activeIndexStepReserva == 1">
+        <p-table [value]="butacas" [responsive]="true">
+          <ng-template pTemplate="header">
+            <tr>
+              <th></th>
+              <th *ngFor="let col of butacas[0]; let i = index">
+                Columna {{i+1}}
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-butaca let-rowIndex="rowIndex">
+            <tr>
+              <th>Fila {{rowIndex+1}}</th>
+              <td *ngFor="let fila of butacas[rowIndex]">
+                <p-checkbox [ngModel]="fila.reserva != null ? true : false"
+                            [disabled]="fila.reserva != null" binary="true"
+                            (onChange)="seleccionarButaca($event, fila)">
+                </p-checkbox>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
   </div>
 
   <p-footer>
     <button pButton *ngIf="activeIndexStepReserva >= 0 && activeIndexStepReserva < 2"
+            [disabled]="activeIndexStepReserva == 0 && funcionSeleccionada == null || activeIndexStepReserva == 1 && butacasSeleccionadas.length == 0"
             label="Siguiente" (click)="siguientePasoReserva()">
     </button>
     <button pButton *ngIf="activeIndexStepReserva == 2" class="ui-button-success"

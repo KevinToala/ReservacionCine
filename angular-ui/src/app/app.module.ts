@@ -10,10 +10,10 @@ import { LoginComponent } from './login/login.component';
 import {HttpService} from './services/http.service';
 import {UsuarioService} from './services/usuario.service';
 import {CardModule} from 'primeng/card';
-import {CalendarModule, CarouselModule, InputTextModule, OverlayPanelModule} from 'primeng/primeng';
+import {CalendarModule, CarouselModule, CheckboxModule, InputTextModule, OverlayPanelModule} from 'primeng/primeng';
 import {PasswordModule} from 'primeng/password';
 import {ButtonModule} from 'primeng/button';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {GrowlModule} from 'primeng/growl';
 import {MessageService} from 'primeng/components/common/messageservice';
 import {KeyFilterModule} from 'primeng/keyfilter';
@@ -25,6 +25,8 @@ import {DataGridModule} from 'primeng/datagrid';
 import {SessionService} from './services/session.service';
 import {DialogModule} from 'primeng/dialog';
 import {StepsModule} from 'primeng/steps';
+import {FuncionService} from './services/funcion.service';
+import {TableModule} from 'primeng/table';
 
 @NgModule({
   imports: [
@@ -44,7 +46,10 @@ import {StepsModule} from 'primeng/steps';
     CarouselModule,
     DialogModule,
     OverlayPanelModule,
-    StepsModule
+    StepsModule,
+    TableModule,
+    FormsModule,
+    CheckboxModule
   ],
   declarations: [
     AppComponent,
@@ -58,7 +63,8 @@ import {StepsModule} from 'primeng/steps';
     UsuarioService,
     MessageService,
     PeliculaService,
-    SessionService
+    SessionService,
+    FuncionService
   ],
   bootstrap: [AppComponent]
 })

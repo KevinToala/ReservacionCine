@@ -13,5 +13,6 @@ import javax.persistence.Table;
 @NoArgsConstructor
 public class Sala extends ModeloBase {
 	private String nombre;
-	private int asientos;
+	private int filas;
+	private int columnas;
 }
