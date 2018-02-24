@@ -4,5 +4,9 @@ public enum GeneroPelicula {
 	ACCION,
 	TERROR,
 	COMEDIA,
-	AVENTURA
+	AVENTURA,
+	DRAMA,
+	ROMANCE,
+	ANIMACION,
+	BIOGRAFIA
 }

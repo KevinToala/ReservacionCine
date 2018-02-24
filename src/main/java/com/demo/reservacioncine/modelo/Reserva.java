@@ -1,14 +1,13 @@
 package com.demo.reservacioncine.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Table(name = "reservas")
@@ -25,4 +24,8 @@ public class Reserva extends ModeloBase {
 	private Usuario usuario;
 	
 	private LocalDate fecha;
+	
+	@JsonIgnore
+	@Transient
+	private Set<Long> idButacasReservar;
 }

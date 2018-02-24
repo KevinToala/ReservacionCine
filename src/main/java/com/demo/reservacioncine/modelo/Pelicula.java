@@ -1,5 +1,6 @@
 package com.demo.reservacioncine.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,6 +21,7 @@ public class Pelicula extends ModeloBase {
 	@Enumerated(EnumType.STRING)
 	private GeneroPelicula genero;
 	
-	@OneToMany(mappedBy = "pelicula", fetch = FetchType.EAGER)
+	@JsonIgnore
+	@OneToMany(mappedBy = "pelicula")
 	private List<Funcion> funciones;
 }
