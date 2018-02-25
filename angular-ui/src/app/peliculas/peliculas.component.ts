@@ -84,15 +84,18 @@ export class PeliculasComponent implements OnInit {
     this.funcionService.reservar(reserva).subscribe(value => {
       this.peliculaService.lista()
         .subscribe(value => this.peliculas = value);
-
-      this.dialogReservaVisible = false;
-      this.activeIndexStepReserva = 0;
-      this.butacasSeleccionadas = [];
-      this.butacas = null;
-      this.funcionSeleccionada = null;
-      this.funciones = null;
       this.messageService.add({severity:'success', summary:'Reservación', detail:'Se ha realizado su reserva exitosamente'});
+      this.reiniciarDialogoReserva();
     });
+  }
+
+  private reiniciarDialogoReserva() {
+    this.dialogReservaVisible = false;
+    this.activeIndexStepReserva = 0;
+    this.butacasSeleccionadas = [];
+    this.butacas = null;
+    this.funcionSeleccionada = null;
+    this.funciones = null;
   }
 
   seleccionarButaca(checked, butaca): void {
@@ -103,5 +106,9 @@ export class PeliculasComponent implements OnInit {
       const indiceButaca = this.butacasSeleccionadas.findIndex(idButaca => idButaca == butaca.id);
       this.butacasSeleccionadas.splice(indiceButaca, 1);
     }
+  }
+
+  eventoCierreDialogoReserva(){
+    this.reiniciarDialogoReserva();
   }
 }

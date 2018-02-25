@@ -27,6 +27,7 @@ import {DialogModule} from 'primeng/dialog';
 import {StepsModule} from 'primeng/steps';
 import {FuncionService} from './services/funcion.service';
 import {TableModule} from 'primeng/table';
+import { MisReservasComponent } from './mis-reservas/mis-reservas.component';
 
 @NgModule({
   imports: [
@@ -56,7 +57,8 @@ import {TableModule} from 'primeng/table';
     RegistroUsuarioComponent,
     LoginComponent,
     PeliculasComponent,
-    MenuBarComponent
+    MenuBarComponent,
+    MisReservasComponent
   ],
   providers: [
     HttpService,

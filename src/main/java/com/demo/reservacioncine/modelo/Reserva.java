@@ -1,13 +1,12 @@
 package com.demo.reservacioncine.modelo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -25,6 +24,9 @@ public class Reserva extends ModeloBase {
 	private Usuario usuario;
 	
 	private LocalDateTime fecha;
+	
+	@OneToMany(mappedBy = "reserva")
+	private List<Butaca> butacas;
 	
 	@Transient
 	private Set<Long> idButacasReservar;

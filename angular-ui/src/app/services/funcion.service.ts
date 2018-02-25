@@ -18,4 +18,8 @@ export class FuncionService {
   public reservar(reserva): Observable<any> {
     return this.httpService.post('reservas', reserva);
   }
+
+  public obtenerReservas(idUsuario): Observable<any> {
+    return this.httpService.get(`usuarios/${idUsuario}/reservas`);
+  }
 }

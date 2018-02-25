@@ -58,7 +58,8 @@
   </div>
 </p-overlayPanel>
 
-<p-dialog header="Reservación" [(visible)]="dialogReservaVisible" modal="modal" width="800" [responsive]="true">
+<p-dialog header="Reservación" [(visible)]="dialogReservaVisible" modal="modal" [positionTop]="25"
+          width="900" [responsive]="true" (onHide)="eventoCierreDialogoReserva()">
   <div class="ui-g ui-fluid" *ngIf="peliculaReservar != null">
     <div class="ui-g-12">
       <p-steps [model]="pasosReservacion" [(activeIndex)]="activeIndexStepReserva" styleClass="steps-custom"></p-steps>
@@ -107,6 +108,36 @@
             </tr>
           </ng-template>
         </p-table>
+      </div>
+
+      <div *ngIf="activeIndexStepReserva == 2">
+        <div class="ui-fluid ui-g">
+          <div class="ui-g-4">
+            <img src="{{peliculaReservar.urlImagen}}" width="180">
+          </div>
+          <div class="ui-g-8" style="text-align: left;">
+            <div class="ui-g titulo">
+              <span>Titulo: {{peliculaReservar.titulo}}</span>
+            </div>
+            <div class="ui-g">
+              <span style="text-align: justify;">Descripción: {{peliculaReservar.descripcion}}</span>
+            </div>
+            <br>
+            <div class="ui-g">
+              <span class="titulo">Funcióno</span>
+            </div>
+            <div class="ui-g">
+              <div class="ui-g-4 titulo">Fecha</div>
+              <div class="ui-g-4 titulo">Hora</div>
+              <div class="ui-g-4 titulo">Cantidad Asientos</div>
+            </div>
+            <div class="ui-g">
+              <div class="ui-g-4">{{funcionSeleccionada.fecha}}</div>
+              <div class="ui-g-4">{{funcionSeleccionada.horario}}</div>
+              <div class="ui-g-4">{{butacasSeleccionadas.length}}</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

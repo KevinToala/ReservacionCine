@@ -18,12 +18,29 @@ export class MenuBarComponent implements OnInit {
   ngOnInit() {
     this.nombresUsuario = localStorage.getItem('cine-nombres');
 
-    this.items = [
-      {
-        label: 'Peliculas',
-        icon: 'fa-file-o'
-      }
-    ];
+    if (this.sessionService.estaLogueado()) {
+      this.items = [
+        {
+          label: 'Peliculas',
+          icon: 'fa-film',
+          routerLink: '/peliculas'
+        },
+        {
+          label: 'Mis Reservas',
+          icon: 'fa-file-o',
+          routerLink: '/misReservas'
+        }
+      ];
+    }
+    else {
+      this.items = [
+        {
+          label: 'Peliculas',
+          icon: 'fa-film',
+          routerLink: '/peliculas'
+        }
+      ];
+    }
   }
 
   logout(){
@@ -31,6 +48,15 @@ export class MenuBarComponent implements OnInit {
     localStorage.removeItem('cine-nombres');
     localStorage.removeItem('cine-autorizacion');
     localStorage.removeItem('cine-rol');
+
+    this.items = [
+      {
+        label: 'Peliculas',
+        icon: 'fa-film',
+        routerLink: '/peliculas'
+      }
+    ];
+
     this.router.navigateByUrl('/');
   }
 }

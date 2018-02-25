@@ -9,11 +9,11 @@ import com.demo.reservacioncine.repositorio.FuncionRepositorio;
 import com.demo.reservacioncine.repositorio.ReservaRepositorio;
 import com.demo.reservacioncine.repositorio.UsuarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @RestController
 public class ReservaControlador {
@@ -23,7 +23,7 @@ public class ReservaControlador {
 	@Autowired private ButacaRepositorio butacaRepositorio;
 	
 	@PostMapping("reservas")
-	public Reserva crearReserva(@RequestBody Reserva reserva){
+	public ResponseEntity<Void> crearReserva(@RequestBody Reserva reserva){
 		Usuario usuario = usuarioRepositorio.findOne(reserva.getUsuario().getId());
 		Funcion funcion = funcionRepositorio.findOne(reserva.getFuncion().getId());
 		
@@ -38,6 +38,23 @@ public class ReservaControlador {
 			butacaRepositorio.save(butaca);
 		});
 		
-		return reserva;
+		return ResponseEntity.noContent().build();
+	}
+	
+	@GetMapping("usuarios/{idUsuario}/reservas")
+	public List<Reserva> obtenerReservas(@PathVariable Long idUsuario){
+		Usuario usuario = usuarioRepositorio.findOne(idUsuario);
+		List<Reserva> reservas = usuario.getReservas();
+		reservas.forEach(reserva -> {
+			reserva.getFuncion().setButacas(null);
+			reserva.getFuncion().setReservas(null);
+			reserva.getFuncion().getPelicula().setFunciones(null);
+			reserva.getUsuario().setReservas(null);
+			reserva.getButacas().forEach(butaca -> {
+				butaca.setReserva(null);
+				butaca.setFuncion(null);
+			});
+		});
+		return reservas;
 	}
 }

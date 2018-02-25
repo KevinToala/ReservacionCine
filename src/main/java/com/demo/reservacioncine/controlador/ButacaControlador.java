@@ -22,6 +22,14 @@ public class ButacaControlador {
 		
 		Butaca[][] butacas = new Butaca[sala.getFilas()][sala.getColumnas()];
 		funcion.getButacas().forEach(butaca -> {
+			if(butaca.getReserva() != null){
+				butaca.getReserva().setButacas(null);
+				butaca.getReserva().getUsuario().setReservas(null);
+				butaca.getReserva().setFuncion(null);
+			}
+			
+			butaca.setFuncion(null);
+			
 			butacas[butaca.getFila()-1][butaca.getColumna()-1] = butaca;
 		});
 		

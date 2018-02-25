@@ -16,7 +16,9 @@ public class UsuarioControlador {
 	
 	@PostMapping("login")
 	public Usuario login(Principal principal){
-		return usuarioRepositorio.findByUsername(principal.getName());
+		Usuario usuario = usuarioRepositorio.findByUsername(principal.getName());
+		usuario.setReservas(null);
+		return usuario;
 	}
 	
 	@PostMapping("usuarios")
