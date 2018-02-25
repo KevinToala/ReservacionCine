@@ -26,10 +26,13 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().authorizeRequests()
+				.antMatchers("/h2-console", "/register").permitAll()
 				.mvcMatchers("/", "/usuarios", "/login", "/peliculas").permitAll()
 				.anyRequest().authenticated()
 				.and()
 				.httpBasic()
+				.and()
+				.headers().frameOptions().disable()
 				.and()
 			.csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
