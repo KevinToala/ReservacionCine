@@ -25,7 +25,8 @@ public class MainControlador {
 	@FXML
 	public void mostrarCreditos(){
 		screenManager.launchAlert("Creditos", "Aplicación para la administracion del cine",
-				"Desarrolladores:" +
+				"Curso: S7-5" +
+				"\nDesarrolladores:" +
 						"\n-María José Mosquera Gutiérrez" +
 						"\n-Joselyne Daniela Nieves Rodriguez" +
 						"\n-Ginger Lisseth Bajaña Olvera");

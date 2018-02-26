@@ -30,12 +30,16 @@ insert into peliculas(id, titulo, descripcion, duracion, genero, url_imagen) VAL
    'Estados Unidos, 1971. El director del Washington Post Ben Bradlee (Tom Hanks) y la editora Katharine Graham (Meryl Streep) descubren una filtración con documentos que demostraban que la administración del presidente Lyndon B. Johnson había mentido a los ciudadanos sobre la guerra de Vietnam. Tras la decisión de este periódico de publicar los Papeles del Pentágono, se produce un gran escándalo y una batalla sin precedentes entre periodistas y Gobierno. Esta polémica revelación llegó incluso a dañar a la administración del sucesor de Johnson, Richard Nixon.',
    116, 'BIOGRAFIA', 'https://www.supercines.com/MovieImages/20171201Mov002/xxhdpi.jpg');
 
-insert into usuarios(username, clave, nombres, apellidos, identificacion, fecha_nacimiento, rol) VALUES
-  ('admin', '$2a$10$cDuprPNjRVkugNrEY1SYZelGtH54Ie78a3aHuVlNGhtiXgLo4RC26', 'Administrador', '', '9999999999999', '2000-01-01', 'ADMIN');
+insert into usuarios(id, username, clave, nombres, apellidos, identificacion, fecha_nacimiento, rol) VALUES
+  (1, 'admin', '$2a$10$cDuprPNjRVkugNrEY1SYZelGtH54Ie78a3aHuVlNGhtiXgLo4RC26', 'Administrador', '', '9999999999999', '2000-01-01', 'ADMIN');
 
 
 insert into salas(id, nombre, filas, columnas) values
-  (1, 'Sala 1', 4, 2);
+  (1, 'Sala 1', 4, 2),
+  (2, 'Sala 2', 10, 5),
+  (3, 'Sala en 3D - 1', 5, 4),
+  (4, 'Sala 1', 10, 3),
+  (5, 'Sala en 3D - 2', 8, 5);
 
 insert into funciones(id, sala_id, pelicula_id, fecha, horario) values
   (1, 1, 1, '2018-08-23', '09:00:00');
