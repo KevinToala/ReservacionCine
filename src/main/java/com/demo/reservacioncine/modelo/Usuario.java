@@ -1,5 +1,6 @@
 package com.demo.reservacioncine.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,6 +24,7 @@ public class Usuario extends ModeloBase {
 	@Enumerated(EnumType.STRING)
 	private Rol rol;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "usuario")
 	private List<Reserva> reservas;
 }

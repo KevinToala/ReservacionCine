@@ -2,26 +2,32 @@
 
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.demo.admincinefx.controlador.MainControlador">
+<AnchorPane prefHeight="344.0" prefWidth="791.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.demo.admincinefx.controlador.MainControlador">
    <children>
-      <BorderPane prefHeight="422.0" prefWidth="524.0">
+      <BorderPane fx:id="panelContenido" prefHeight="340.0" prefWidth="791.0">
          <center>
 			 <fx:include source="peliculas.fxml" />
          </center>
          <top>
-            <AnchorPane prefHeight="23.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-               <children>
-                  <MenuBar prefHeight="25.0" prefWidth="580.0">
-                    <menus>
-                      <Menu mnemonicParsing="false" text="Peliculas" />
-                      <Menu mnemonicParsing="false" text="Funciones" />
-                    </menus>
-                  </MenuBar>
-               </children>
-            </AnchorPane>
+            <MenuBar>
+              <menus>
+                  <Menu mnemonicParsing="false" text="Modulos">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#cargarVistaPeliculas" text="Peliculas" />
+                        <MenuItem mnemonicParsing="false" onAction="#cargarVistaFunciones" text="Funciones" />
+                    </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Ayuda">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#mostrarCreditos" text="Creditos" />
+                    </items>
+                  </Menu>
+              </menus>
+            </MenuBar>
          </top>
       </BorderPane>
    </children>

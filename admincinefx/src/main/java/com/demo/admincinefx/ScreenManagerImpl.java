@@ -96,33 +96,6 @@ public class ScreenManagerImpl implements ScreenManager {
 		primaryStage.setMaximized(true);
 		primaryStage.setResizable(false);
 	}
-
-	@Override
-	public <T> ModelDialogController<T> launchDialog(FXMLView view, T model) {
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(view.getFxmlPath()));
-		fxmlLoader.setControllerFactory(springContext::getBean);
-		Parent root = null;
-		try {
-			root = fxmlLoader.load();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		// Create the dialog Stage.
-		Stage dialogStage = new Stage();
-		dialogStage.setTitle(fxmlLoader.getResources().getString(view.getTitleKey()));
-		dialogStage.initModality(Modality.WINDOW_MODAL);
-		dialogStage.initOwner(primaryStage);
-		Scene scene = new Scene(root);
-		dialogStage.setScene(scene);
-
-		ModelDialogController<T> controller = fxmlLoader.getController();
-		controller.setModel(model);
-		controller.setStage(dialogStage);
-
-		return controller;
-	}
 	
 	@Override
 	public Node getNodeByID(String idElement) {
@@ -197,34 +170,12 @@ public class ScreenManagerImpl implements ScreenManager {
 	}
 	
 	@Override
-	public ApplicationContext getAppContext() {
+	public ApplicationContext getAppContext(){
 		return this.springContext;
 	}
 	
 	@Override
-	public Boolean launchConfirm(String content) {
+	public Boolean launchConfirm(String content){
 		return launchConfirm("Confirmación", content);
-	}
-	
-	@Override
-	public <T> Controller<T> changeContent(BorderPane borderPane, FXMLView view, T model){
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(view.getFxmlPath()));
-		fxmlLoader.setControllerFactory(springContext::getBean);
-		Parent pane = null;
-		
-		try {
-			pane = fxmlLoader.load();
-		}
-		catch(Exception e){
-			e.printStackTrace();
-		}
-		
-		borderPane.setCenter(pane);
-		
-		Controller<T> controller = fxmlLoader.getController();
-		controller.setModel(model);
-		controller.start();
-		
-		return controller;
 	}
 }

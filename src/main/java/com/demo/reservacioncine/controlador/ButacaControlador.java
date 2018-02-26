@@ -24,7 +24,6 @@ public class ButacaControlador {
 		funcion.getButacas().forEach(butaca -> {
 			if(butaca.getReserva() != null){
 				butaca.getReserva().setButacas(null);
-				butaca.getReserva().getUsuario().setReservas(null);
 				butaca.getReserva().setFuncion(null);
 			}
 			

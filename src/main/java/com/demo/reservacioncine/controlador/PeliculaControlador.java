@@ -17,7 +17,7 @@ public class PeliculaControlador {
 	}
 	
 	@PostMapping
-	public Pelicula obtenerPeliculas(@RequestBody Pelicula pelicula){
+	public Pelicula crearPelicula(@RequestBody Pelicula pelicula){
 		return peliculaRepositorio.save(pelicula);
 	}
 }
